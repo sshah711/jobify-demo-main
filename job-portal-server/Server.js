@@ -9,7 +9,7 @@ DBConnectionHandler();
 const port = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
-    res.send("Job Hunter Server is running!");
+    res.send("Jobify Server is running!");
 });
 // 404 Error handler
 app.use("*", (req, res) => {
