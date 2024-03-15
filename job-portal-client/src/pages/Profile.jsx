@@ -7,7 +7,7 @@ import { GrPowerReset } from "react-icons/gr";
 
 import styled from "styled-components";
 
-import avatar from "../assets/media/avatar.jpg";
+import avatar from "../assets/media/avtar1.png";
 
 import { useUserContext } from "../context/UserContext";
 

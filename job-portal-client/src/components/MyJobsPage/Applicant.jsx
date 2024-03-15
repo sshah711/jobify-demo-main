@@ -147,6 +147,7 @@ const Wrapper = styled.section`
     }
     .table .action-row .action {
         font-size: 21px;
+        
     }
     .action.view {
         color: #22d637;

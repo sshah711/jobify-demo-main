@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Wrapper from "../assets/css/wrappers/LandingPage";
 import { Link } from "react-router-dom";
-import photo from "../assets/media/LandingPage/hero.png";
+import photo from "../assets/media/LandingPage/hero1.png";
 import Navbar from "../components/shared/Navbar";
 import PopularCategory from "../components/Home Page/PopularCategory";
 import HowWorks from "../components/Home Page/HowWorks";
@@ -46,11 +46,11 @@ const Landing = () => {
                 </div>
             </Wrapper>
             <div>
-            <PopularCategory/>
+            {/* <PopularCategory/>
             <HowWorks/>
             <Team/>
             <Testimonial/>
-            <Brands/>
+            <Brands/> */}
             </div>
         </>
     );

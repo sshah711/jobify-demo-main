@@ -21,8 +21,8 @@ const Footer = () => {
                   />
                 </a>
                 <p className="mb-7 text-base text-body-color dark:text-dark-6">
-                  Sed ut perspiciatis undmnis is iste natus error sit amet
-                  voluptatem totam rem aperiam.
+                  {/* Sed ut perspiciatis undmnis is iste natus error sit amet
+                  voluptatem totam rem aperiam. */}
                 </p>
                 <p className="flex items-center text-sm font-medium text-dark dark:text-white">
                   <span className="mr-3 text-primary">
@@ -54,7 +54,7 @@ const Footer = () => {
                       </defs>
                     </svg>
                   </span>
-                  <span>+012 (345) 678 99</span>
+                  {/* <span>+012 (345) 678 99</span> */}
                 </p>
               </div>
             </div>

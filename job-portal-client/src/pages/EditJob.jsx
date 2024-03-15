@@ -35,7 +35,7 @@ const EditJob = () => {
         queryKey: ["updateJob"],
         queryFn: () =>
             getSingleHandler(
-                `http://localhost:3000/api/v1/jobs/${id}`
+                `http://localhost:3000/api/v1/Jobs/${id}`
             ),
     });
 
@@ -98,7 +98,7 @@ const EditJob = () => {
         // posting;
         updateJobMutation.mutate({
             body: updateJob,
-            url: `http://localhost:3000/api/v1/jobs/${id}`,
+            url: `http://localhost:3000/api/v1/Jobs/${id}`,
         });
     };
     // const onSubmit = (data) => {

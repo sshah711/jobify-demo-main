@@ -66,14 +66,16 @@ const JobSchema = new mongoose.Schema(
             // maxLength: [100, "Company name is too long"],
         },
         jobSkills: {
-            type: [],
+            type: [String],
             requried: [true, "Job Skills is requried"],
             trim: true,
             // minLength: [5, "Company name is too short"],
             // maxLength: [100, "Company name is too long"],
         },
         jobFacilities: {
-            type: [],
+            type: [
+                String
+            ],
             requried: [true, "Job facilities is requried"],
             trim: true,
             // minLength: [5, "Company name is too short"],
