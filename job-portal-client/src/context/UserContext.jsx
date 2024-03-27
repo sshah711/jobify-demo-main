@@ -9,7 +9,7 @@ const UserContext = ({ children }) => {
     const [user, setUser] = useState({});
 
     const handleFetchMe = async () => {
-        setUserLoading(true);
+        setUserLoading(true); 
         try {
             const response = await axios.get(
                 `http://localhost:3000/api/v1/auth/me`,

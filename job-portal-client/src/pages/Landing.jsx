@@ -9,6 +9,7 @@ import Team from "../components/Home Page/Team";
 import Brands from "../components/Home Page/Brands";
 import Testimonial from "../components/Home Page/Testimonial";
 
+   
 const Landing = () => {
     const navbarRef = useRef(null);
     const heroRef = useRef(null);
@@ -28,11 +29,11 @@ const Landing = () => {
                             Today!
                         </h1>
                         <p>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing
+                            {/* Lorem ipsum dolor, sit amet consectetur adipisicing
                             elit. Illo perferendis dignissimos eligendi voluptas
                             exercitationem, eius aut mollitia quasi nisi
                             voluptatem similique, tempore totam, odit
-                            repellendus non. Dolores eos animi recusandae.
+                            repellendus non. Dolores eos animi recusandae. */}
                         </p>
                         <div className="btn-grp">
                             <Link className="btn" to="/all-jobs">

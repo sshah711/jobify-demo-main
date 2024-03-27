@@ -3,8 +3,11 @@
 import styled from "styled-components";
 import Logo from "../Logo";
 import { NavLink } from "react-router-dom";
+//import { useState } from "react";
 
 const Navbar = ({ navbarRef }) => {
+
+   // const [btnName, setBtnName] = useState("Login");
     return (
         <Wrapper ref={navbarRef}>
             <div className="container">
