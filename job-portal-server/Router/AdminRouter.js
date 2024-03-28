@@ -1,7 +1,7 @@
 const express = require("express");
 const AdminRouter = express.Router(); // create a router
 
-const {
+const { 
     userAuthorizationHandler,
 } = require("./../Middleware/UserAuthorizationMiddleware");
 const {

@@ -52,6 +52,12 @@ const RecruiterLinks = [
         path: "my-jobs",
         icon: <FaBriefcase />,
     },
+   //new
+    {
+        text: "recruiter",
+        path: "recruite",
+        icon: <FaUserShield />,
+    },
 ];
 
 const UserLinks = [
@@ -64,6 +70,12 @@ const UserLinks = [
         text: "Applications",
         path: "my-jobs",
         icon: <FaBriefcase />,
+    },
+    //new
+    {
+        text: "user",
+        path: "user",
+        icon: <FaUserShield />,
     },
 ];
 

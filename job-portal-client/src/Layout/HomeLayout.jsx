@@ -4,7 +4,7 @@ import Footer from "../pages/Footer";
 
 const HomeLayout = () => {
     return (
-        <div>
+        <div> 
             <Outlet />
             <Footer/>
         </div>

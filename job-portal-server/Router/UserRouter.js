@@ -5,7 +5,7 @@ const UserRouter = express.Router();
 const UserController = require("../Controller/UserController");
 
 const {
-    checkRegisterInput,
+    checkRegisterInput, 
     checkLoginInput,
     checkUserUpdateInput,
 } = require("../Validation/UserDataRules");
@@ -27,6 +27,13 @@ UserRouter.route("/")
 UserRouter.route("/:id")
     .get(UserController.getSingleUser)
     .delete(userAuthorizationHandler("admin"), UserController.deleteUser);
+  
+    //new
+    UserRouter.get(
+        "/info",
+        userAuthorizationHandler("user"),
+        UserController.getAllInfo
+    );
 
 module.exports = UserRouter;
 

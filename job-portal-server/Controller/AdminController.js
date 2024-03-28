@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const createError = require("http-errors");
 
-const day = require("dayjs");
+const day = require("dayjs"); 
 
 exports.getAllInfo = async (req, res, next) => {
     try {

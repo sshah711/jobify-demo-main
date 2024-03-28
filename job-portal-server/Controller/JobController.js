@@ -1,8 +1,36 @@
-const JobModel = require("../Model/JobModel");
+
 const ApplicationModel = require("../Model/ApplicationModel");
 
 const createError = require("http-errors");
 const mongoose = require("mongoose");
+const UserModel = require("../Model/UserModel");
+const JobModel = require("../Model/JobModel");
+
+exports.getAllInfo = async (req, res, next) => {
+    try {
+        const users = await UserModel.find({});
+         const recruiter = await UserModel.find({ role: "recruiter" });
+        const applicant = await UserModel.find({ role: "user" });
+
+        const jobs = await JobModel.find({});
+
+        const interviewJobs = await JobModel.find({ jobStatus: "interview" });
+        const pendingJobs = await JobModel.find({ jobStatus: "pending" });
+        const declinedJobs = await JobModel.find({ jobStatus: "declined" });
+
+        res.status(200).json({
+            user: users?.length || 0,
+            recruiter: recruiter?.length || 0,
+            applicant: applicant?.length || 0,
+            job: jobs?.length || 0,
+            interview: interviewJobs?.length || 0,
+            pending: pendingJobs?.length || 0,
+            declined: declinedJobs?.length || 0,
+        });
+    } catch (error) {
+        next(createError(500, error.message));
+    }
+};
 
 module.exports.getAllJobs = async (req, res, next) => {
     try {

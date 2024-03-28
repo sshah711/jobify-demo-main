@@ -95,6 +95,7 @@ const Recruiter = () => {
     return (
         <Wrapper>
             <div className="content-row">
+                
                 <table className="table">
                     <thead>
                         <tr>

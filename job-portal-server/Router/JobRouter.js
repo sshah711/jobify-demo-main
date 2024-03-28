@@ -1,5 +1,6 @@
 const express = require("express");
 const JobRouter = express.Router(); // create a router
+const UserModel = require("../Model/UserModel");
 
 // Controllers
 const JobController = require("../Controller/JobController");
@@ -35,6 +36,11 @@ JobRouter.route("/:id")
     .delete(
         userAuthorizationHandler("recruiter"),
         JobController.deleteSingleJob
+    );
+    JobRouter.get(
+        "/info",
+        userAuthorizationHandler("recruiter"),
+        JobController.getAllInfo
     );
 
 module.exports = JobRouter;

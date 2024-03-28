@@ -44,5 +44,10 @@ ApplicationRouter.patch(
     userAuthorizationHandler("recruiter"),
     ApplicationController.updateJobStatus
 );
+ApplicationRouter.get(
+    "/info",
+    userAuthorizationHandler("recruiter"),
+    ApplicationController.getAllInfo
+);
 
 module.exports = ApplicationRouter;
