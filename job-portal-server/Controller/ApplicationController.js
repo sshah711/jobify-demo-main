@@ -21,7 +21,7 @@ exports.getAllInfo = async (req, res, next) => {
     const users = await UserModel.find({});
     const recruiter = await UserModel.find({ role: "recruiter" });
     const applicant = await UserModel.find({ role: "user" });
-
+    const u = await UserModel.findById({ _id: req.body.applicantId });
     const jobs = await JobModel.find({});
 
     const interviewJobs = await JobModel.find({ jobStatus: "interview" });
@@ -29,8 +29,7 @@ exports.getAllInfo = async (req, res, next) => {
     const declinedJobs = await JobModel.find({ jobStatus: "declined" });
     console.log(applicant);
     res.status(200).json({
-      user: users?.length || 0,
-      admin: admin?.length || 0,
+      user: u?.length || 0,
       recruiter: recruiter?.length || 0,
       applicant: applicant?.length || 0,
       job: jobs?.length || 0,
@@ -177,7 +176,13 @@ exports.applyInJob = async (req, res, next) => {
     });
 
     const user = await UserModel.findById({ _id: req.body.applicantId });
-    const email = user.email;
+    const job = await JobModel.findById({ _id: req.body.jobId });
+    const s =  job.company
+    const p =  job.position
+    console.log(job.company)
+     console.log(p)
+    //const email = user.email;
+    const rec = await UserModel.findById({ _id: req.body.recruiterId });
     if (alreadyApplied) {
       next(createError(500, "Already Applied"));
     } else {
@@ -185,16 +190,17 @@ exports.applyInJob = async (req, res, next) => {
       let c = j.cnt + 1;
       j.cnt = c;
       j.save();
-     // const company = j.company;
+      // const company = j.company;
       const applied = new ApplicationModel(req.body);
       const result = await applied.save();
-      const mailOptions = {
+
+      const mailOptions1 = {
         from: "sshah380008@gmail.com",
-        to: email,
+        to: user.email,
         subject: "Registered",
-        text: `You have successfully Applied to`,
+        text: `You have successfully Applied to ${s} for ${p} position.`,
       };
-      transporter.sendMail(mailOptions, function (error, info) {
+      transporter.sendMail(mailOptions1, function (error, info) {
         if (error) {
           console.log(error);
           res.status(500).send("Failed to send OTP.");
@@ -203,6 +209,23 @@ exports.applyInJob = async (req, res, next) => {
           res.status(200).send("OTP sent successfully.");
         }
       });
+
+      const mailOptions2 = {
+        from: "sshah380008@gmail.com",
+        to: rec.email,
+        subject: "New Applicant Added.",
+        text: `one applicant are added in ${s} for ${p} position.`,
+      };
+      transporter.sendMail(mailOptions2, function (error, info) {
+        if (error) {
+          console.log(error);
+          res.status(500).send("Failed to send OTP.");
+        } else {
+          console.log("Email sent: " + info.response);
+          res.status(200).send("OTP sent successfully.");
+        }
+      });
+
       res.status(201).json({
         status: true,
         message: "Applied Successfully",
@@ -215,8 +238,10 @@ exports.applyInJob = async (req, res, next) => {
 
 module.exports.updateJobStatus = async (req, res, next) => {
   const { id } = req.params;
-  const data = req.body;
+  const data = await req.body;
+  const sts= data.status
 
+  console.log(sts)
   try {
     if (data?.recruiterId?.toString() === req?.user._id.toString()) {
       console.log("same");
@@ -224,13 +249,13 @@ module.exports.updateJobStatus = async (req, res, next) => {
         next(createError(400, "Invalid Job ID format"));
       }
 
-      //   const user = await UserModel.findById({ _id: req.body.applicantId });
-      //   const email = user.email;
-
+        
       const isJobExists = await ApplicationModel.findOne({ _id: id });
       if (!isJobExists) {
         next(createError(500, "Job not found"));
       } else {
+
+
         const updatedJob = await ApplicationModel.findByIdAndUpdate(
           id,
           { $set: data },
@@ -238,21 +263,27 @@ module.exports.updateJobStatus = async (req, res, next) => {
             new: true,
           }
         );
-        // const mailOptions = {
-        //     from: "sshah380008@gmail.com",
-        //     to: email,
-        //     subject: "Rejected",
-        //     text: `You have successfully Rejected`,
-        //   };
-        //   transporter.sendMail(mailOptions, function (error, info) {
-        //     if (error) {
-        //       console.log(error);
-        //       res.status(500).send("Failed to send OTP.");
-        //     } else {
-        //       console.log("Email sent: " + info.response);
-        //       res.status(200).send("OTP sent successfully.");
-        //     }
-        //   });
+          const ss=isJobExists.applicantId
+          // console.log(isJobExists)
+          // console.log(ss)
+        const user = await UserModel.findById({ _id: ss });
+        const email = user.email;
+        
+        const mailOptions = {
+            from: "sshah380008@gmail.com",
+            to: email,
+            subject: "Job Status",
+            text: `You are ${sts} to this job.`,
+          };
+          transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              console.log(error);
+              res.status(500).send("Failed to send OTP.");
+            } else {
+              console.log("Email sent: " + info.response);
+              res.status(200).send("OTP sent successfully.");
+            }
+          });
         res.status(200).json({
           status: true,
           message: "Job Updated",

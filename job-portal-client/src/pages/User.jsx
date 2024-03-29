@@ -29,10 +29,10 @@ const User = () => {
                     {/* Total Members */}
                     <div className="relative p-5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-md overflow-hidden">
                         <div className="relative z-10 mb-4 text-white text-4xl leading-none font-semibold">
-                            {data?.user}
+                            {data?.length}
                         </div>
                         <div className="relative z-10 text-blue-100 leading-none font-semibold">
-                            Total Members
+                            Total Applied Companies
                         </div>
                         <svg
                             fill="none"
