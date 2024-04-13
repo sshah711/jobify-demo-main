@@ -11,10 +11,14 @@ const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
   secure: true,
+  
   auth: {
     user: "sshah380008@gmail.com", // Your Gmail email address
     pass: "emsj uhne kpov xdok", // Your Gmail password
   },
+  tls: {
+    rejectUnauthorized: false
+},
 });
 exports.getAllInfo = async (req, res, next) => {
   try {

@@ -11,6 +11,18 @@ const Recruiterr = () => {
       getAllHandler(`http://localhost:3000/api/v1/application/info`),
   });
 
+  let a=(data.filter((res) => res.status === "pending"))
+  let b=(data.filter((res) => res.status === "accepted"))
+  let c=(data.filter((res) => res.status === "rejected"))
+  let d=(data.filter((res) => res.jobId ))
+  let s= data.map((i)=>(i.jobId._id))
+  let s1=s.reduce(function (acc, curr) {
+    if (!acc.includes(curr))
+        acc.push(curr);
+    return acc;
+}, []);
+  console.log(s)
+  console.log(s1)
   if (isPending) {
     return <LoadingComTwo />;
   }
@@ -19,7 +31,7 @@ const Recruiterr = () => {
   }
   return (
     <Wrapper>
-      <h2 className="text-lg md:text-xl font-semibold capitalize mb-3 text-gray-700">
+      {/* <h2 className="text-lg md:text-xl font-semibold capitalize mb-3 text-gray-700">
         total Applicants in Companies
       </h2>
       <div className="card-container">
@@ -46,15 +58,17 @@ const Recruiterr = () => {
             </svg>
           </div>
         ))}
-      </div>
+      </div> */}
 
-      <div className="">
+
+
+      {/* <div className="">
         <h2 className="text-lg md:text-xl font-semibold capitalize mb-3 text-gray-700">
           User Info
         </h2>
-        <div className="card-container">
+        <div className="card-container"> */}
           {/* Total Members */}
-          <div className="relative p-5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-md overflow-hidden">
+          {/* <div className="relative p-5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-md overflow-hidden">
             <div className="relative z-10 mb-4 text-white text-4xl leading-none font-semibold">
               {data?.length}
             </div>
@@ -74,10 +88,10 @@ const Recruiterr = () => {
                 d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
               />
             </svg>
-          </div>
+          </div> */}
 
           {/* Admin */}
-          <div className="relative p-5 bg-gradient-to-r from-cyan-400 to-cyan-600 rounded-md overflow-hidden">
+          {/* <div className="relative p-5 bg-gradient-to-r from-cyan-400 to-cyan-600 rounded-md overflow-hidden">
             <div className="relative z-10 mb-4 text-white text-4xl leading-none font-semibold">
               {data?.admin}
             </div>
@@ -97,10 +111,10 @@ const Recruiterr = () => {
                 d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
               />
             </svg>
-          </div>
+          </div> */}
 
           {/* Recruiters */}
-          <div className="relative p-5 bg-gradient-to-r from-cyan-400 to-cyan-600 rounded-md overflow-hidden">
+          {/* <div className="relative p-5 bg-gradient-to-r from-cyan-400 to-cyan-600 rounded-md overflow-hidden">
             <div className="relative z-10 mb-4 text-white text-4xl leading-none font-semibold">
               {data?.u}
             </div>
@@ -120,10 +134,10 @@ const Recruiterr = () => {
                 d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
               />
             </svg>
-          </div>
+          </div> */}
 
           {/* Members */}
-          <div className="relative p-5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-md overflow-hidden">
+          {/* <div className="relative p-5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-md overflow-hidden">
             <div className="relative z-10 mb-4 text-white text-4xl leading-none font-semibold">
               {data?.applicant}
             </div>
@@ -145,7 +159,7 @@ const Recruiterr = () => {
             </svg>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="mt-12">
         <h2 className="text-lg md:text-xl font-bold capitalize mb-3 text-gray-700">
@@ -155,10 +169,10 @@ const Recruiterr = () => {
           {/* Total Jobs */}
           <div className="relative p-5 bg-gradient-to-r from-orange-400 to-orange-600 rounded-md overflow-hidden">
             <div className="relative z-10 mb-4 text-white text-4xl leading-none font-semibold">
-              {data?.job}
+              {s1.length}
             </div>
             <div className="relative z-10 text-red-100 leading-none font-semibold">
-              Total Jobs
+              Total Jobs Added 
             </div>
             <svg
               fill="none"
@@ -178,7 +192,7 @@ const Recruiterr = () => {
           {/* Pending */}
           <div className="relative p-5 bg-gradient-to-r from-green-400 to-green-600 rounded-md overflow-hidden">
             <div className="relative z-10 mb-4 text-white text-4xl leading-none font-semibold">
-              {data?.pending}
+            {a.length}  {/* {data?.pending} */}
             </div>
             <div className="relative z-10 text-blue-100 leading-none font-semibold">
               Pending
@@ -203,9 +217,9 @@ const Recruiterr = () => {
             <div className="relative z-10 mb-4 text-white text-4xl leading-none font-semibold">
               {/* if(data[0]?.jobId?.jobStatus==="interview"){return data.length} */}
               {/* {data[]?.jobId?.jobStatus} */}
-            </div>
+              {b.length}  </div>
             <div className="relative z-10 text-blue-100 leading-none font-semibold">
-              Interview
+              Accepted
             </div>
             <svg
               fill="none"
@@ -225,7 +239,8 @@ const Recruiterr = () => {
           {/* Rejected */}
           <div className="relative p-5 bg-gradient-to-r from-red-400 to-red-600 rounded-md overflow-hidden">
             <div className="relative z-10 mb-4 text-white text-4xl leading-none font-semibold">
-              {data?.declined}
+            {c.length}
+             {/* {data?.declined} */}
             </div>
             <div className="relative z-10 text-red-100 leading-none font-semibold">
               Declined
